@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Interview Report — AI Interview Preparation Bot{% endblock %}
+{% block content %}
+<section class="section container">
+  <div class="card">
+    <p class="muted">{{ report.evaluation_notice }}</p>
+    <h1>{{ report.performance_level }} — {{ report.percentage }}%</h1>
+    <p>Total Score: <strong>{{ report.total_score }} / {{ report.max_score }}</strong> | Role: {{ report.target_role }}</p>
+
+    <div class="grid-2" style="margin-top: 1.5rem;">
+      <div>
+        <h3>Strongest Areas</h3>
+        <ul>{% for s in report.strongest_areas %}<li>{{ s }}</li>{% endfor %}</ul>
+      </div>
+      <div>
+        <h3>Weakest Areas</h3>
+        <ul>{% for w in report.weakest_areas %}<li>{{ w }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 1.5rem;">
+      <h3>Question Breakdown</h3>
+      <ul>
+        {% for ev in report.evaluations %}
+          <li><strong>{{ ev.topic }} ({{ ev.score }}/10):</strong> {{ ev.question }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="row-actions" style="margin-top: 1.5rem;">
+      <a href="{{ url_for('configure') }}" class="btn btn-primary">Retake Interview</a>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-outline">Return to Dashboard</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

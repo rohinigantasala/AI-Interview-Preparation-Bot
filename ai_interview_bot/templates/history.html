@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Interview History — AI Interview Preparation Bot{% endblock %}
+{% block content %}
+<section class="section container">
+  <div class="card">
+    <h1>Interview History</h1>
+    {% if history %}
+      <table class="table" style="margin-top: 1rem;">
+        <thead>
+          <tr><th>Target Role</th><th>Type</th><th>Mode</th><th>Difficulty</th><th>Score</th><th>Level</th><th>Report</th></tr>
+        </thead>
+        <tbody>
+          {% for item in history %}
+            <tr>
+              <td>{{ item.target_role }}</td>
+              <td>{{ item.interview_type|upper }}</td>
+              <td>{{ item.interview_mode|title }}</td>
+              <td>{{ item.difficulty|title }}</td>
+              <td>{{ item.total_score }}/{{ item.max_score }} ({{ item.percentage }}%)</td>
+              <td>{{ item.performance_level }}</td>
+              <td><a href="{{ url_for('result', attempt_id=item.id) }}">Open</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">You have not completed any interviews yet.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

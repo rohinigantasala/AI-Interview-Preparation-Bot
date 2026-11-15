@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Configure Interview — AI Interview Preparation Bot{% endblock %}
+{% block content %}
+<section class="section container">
+  <div class="card" style="max-width: 720px; margin: 0 auto;">
+    <h1>Configure Your Mock Interview</h1>
+    <form method="post" class="stack" style="margin-top: 1.5rem;">
+      <label>Interview Type
+        <select name="interview_type">
+          <option value="hr" {% if preset_type == 'hr' %}selected{% endif %}>HR Interview</option>
+          <option value="technical" {% if preset_type == 'technical' %}selected{% endif %}>Technical Interview</option>
+          <option value="custom" {% if preset_type == 'custom' %}selected{% endif %}>Custom Role Interview</option>
+        </select>
+      </label>
+      <label>Interview Mode
+        <select name="interview_mode">
+          <option value="voice" selected>Voice Interview (One-on-One AI)</option>
+          <option value="text">Text Interview</option>
+        </select>
+      </label>
+      <label>Difficulty Level
+        <select name="difficulty">
+          <option value="beginner">Beginner</option>
+          <option value="intermediate" selected>Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </label>
+      <label>Number of Questions
+        <select name="question_count">
+          <option value="5" selected>5 Questions</option>
+          <option value="10">10 Questions</option>
+          <option value="15">15 Questions</option>
+        </select>
+      </label>
+      <label>Target Job Role
+        <input type="text" name="target_role" value="Software Developer" required />
+      </label>
+      <button type="submit" class="btn btn-primary">Start Interview</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

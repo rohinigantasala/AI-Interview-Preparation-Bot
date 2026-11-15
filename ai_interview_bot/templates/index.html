@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Your Next Interview Starts Here — AI Interview Preparation Bot{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>Your Next Interview Starts Here.</h1>
+      <p class="hero-sub">Practice with AI. Speak with confidence. Get hired with preparation.</p>
+      <div class="hero-actions">
+        <a href="{{ url_for('register') }}" class="btn btn-primary">Start Practising</a>
+        <a href="#features" class="btn btn-outline-light">Explore Features</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="interviewer-meta">
+        <strong>Elena Vance</strong> — Senior AI Interviewer
+      </div>
+      <p class="prompt-preview">"Walk me through a technical decision you made recently and the trade-offs involved."</p>
+      <div class="wave-bars" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="section container">
+  <h2>Everything You Need to Get Interview-Ready</h2>
+  <div class="grid-3">
+    <div class="card"><h3>AI Voice Interviews</h3><p>Speak naturally with real-time speech recognition and synthesized interviewer prompts.</p></div>
+    <div class="card"><h3>HR Interview Practice</h3><p>Master behavioral storytelling and STAR-format responses.</p></div>
+    <div class="card"><h3>Technical Interview Practice</h3><p>Practise Python, SQL, Data Structures, and backend architecture.</p></div>
+    <div class="card"><h3>Instant Answer Feedback</h3><p>Receive structured 10-point scoring with strengths and stronger example answers.</p></div>
+    <div class="card"><h3>Performance Analytics</h3><p>Track score progression and identify recurring blind spots.</p></div>
+    <div class="card"><h3>Personalized Learning</h3><p>Target specific job roles and difficulty levels tailored to your goals.</p></div>
+  </div>
+</section>
+
+<section class="section container">
+  <h2>How It Works</h2>
+  <div class="grid-4">
+    <div class="card"><strong>Step 1</strong><p>Choose Your Interview.</p></div>
+    <div class="card"><strong>Step 2</strong><p>Talk to Your AI Interviewer.</p></div>
+    <div class="card"><strong>Step 3</strong><p>Receive Intelligent Feedback.</p></div>
+    <div class="card"><strong>Step 4</strong><p>Improve Your Performance.</p></div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready to become interview-ready?</h2>
+    <a href="{{ url_for('register') }}" class="btn btn-primary">Start Your First Interview</a>
+  </div>
+</section>
+{% endblock %}

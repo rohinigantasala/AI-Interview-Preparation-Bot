@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Text Interview — AI Interview Preparation Bot{% endblock %}
+{% block content %}
+<section class="section container">
+  <div class="card" style="max-width: 800px; margin: 0 auto;">
+    <p class="muted">Question {{ attempt.current_index + 1 }} of {{ attempt.question_count }} — {{ attempt.target_role }}</p>
+    <h2>{{ question.prompt }}</h2>
+    <form action="{{ url_for('api_submit_answer') }}" method="post" class="stack" style="margin-top: 1.25rem;">
+      <input type="hidden" name="attempt_id" value="{{ attempt.id }}" />
+      <label>Your Response
+        <textarea name="answer" rows="7" required placeholder="Type a structured response..."></textarea>
+      </label>
+      <div class="row-actions">
+        <button type="submit" class="btn btn-primary">Submit for Evaluation</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline">Return to Dashboard</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

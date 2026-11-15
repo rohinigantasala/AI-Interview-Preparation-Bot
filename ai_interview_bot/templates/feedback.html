@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Answer Feedback — AI Interview Preparation Bot{% endblock %}
+{% block content %}
+<section class="section container">
+  <div class="card" style="max-width: 820px; margin: 0 auto;">
+    <p class="muted">{{ evaluation.evaluation_label }} — Question {{ attempt.current_index + 1 }} of {{ attempt.question_count }}</p>
+    <h2>Score: {{ evaluation.score }} / {{ evaluation.max_score }}</h2>
+    <p><strong>Question:</strong> {{ evaluation.question }}</p>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <h3>Strengths</h3>
+        <ul>{% for item in evaluation.strengths %}<li>{{ item }}</li>{% endfor %}</ul>
+      </div>
+      <div>
+        <h3>Weaknesses</h3>
+        <ul>{% for item in evaluation.weaknesses %}<li>{{ item }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <h3>Suggested Improvements</h3>
+      <ul>{% for item in evaluation.suggested_improvements %}<li>{{ item }}</li>{% endfor %}</ul>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <h3>Example of a Stronger Answer</h3>
+      <p>{{ evaluation.example_stronger_answer }}</p>
+    </div>
+
+    <form action="{{ url_for('api_next_question') }}" method="post" style="margin-top: 1.5rem;">
+      <input type="hidden" name="attempt_id" value="{{ attempt.id }}" />
+      <button type="submit" class="btn btn-primary">Next Question</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

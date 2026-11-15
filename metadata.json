@@ -1,0 +1,6 @@
+{
+  "name": "AI Interview Preparation Bot",
+  "description": "Interactive mock interview preparation platform for HR and technical interviews with preliminary rule-based evaluation, detailed feedback, and dynamic performance reports.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Voice Interview — AI Interview Preparation Bot{% endblock %}
+{% block content %}
+<section class="section container">
+  <div class="card voice-studio" data-attempt-id="{{ attempt.id }}">
+    <div class="voice-header">
+      <div>
+        <strong id="question-counter">Question {{ attempt.current_index + 1 }} of {{ attempt.question_count }}</strong>
+        <p class="muted">{{ attempt.target_role }} — {{ attempt.difficulty|title }}</p>
+      </div>
+      <div class="voice-controls">
+        <span id="voice-timer" class="mono">00:00</span>
+        <button type="button" id="mute-btn" class="btn btn-outline">Mute Voice</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline">End Interview</a>
+      </div>
+    </div>
+
+    <div class="interviewer-stage">
+      <h3>Elena Vance — AI Interviewer</h3>
+      <p id="current-question-text">{{ attempt.questions[attempt.current_index].prompt }}</p>
+      <canvas id="voice-waveform" width="600" height="80"></canvas>
+    </div>
+
+    <div class="stack" style="margin-top: 1.5rem;">
+      <div class="row-actions">
+        <button type="button" id="start-mic-btn" class="btn btn-primary">Start Speaking</button>
+        <button type="button" id="replay-prompt-btn" class="btn btn-outline">Replay Question</button>
+      </div>
+      <p id="mic-status" class="muted">Click Start Speaking to dictate or type your answer below.</p>
+      <textarea id="voice-transcript" rows="5" placeholder="Your spoken transcript or typed answer appears here..."></textarea>
+      <button type="button" id="submit-voice-btn" class="btn btn-primary">Submit Answer</button>
+    </div>
+
+    <div id="voice-feedback-box" class="card" style="display:none; margin-top:1.5rem;"></div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/voice_interview.js') }}"></script>
+{% endblock %}

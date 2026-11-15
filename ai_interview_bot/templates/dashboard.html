@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — AI Interview Preparation Bot{% endblock %}
+{% block content %}
+<section class="section container">
+  <h1>Welcome back, {{ current_user.full_name }}!</h1>
+  <p>What would you like to practise today?</p>
+
+  <div class="grid-3" style="margin-top: 1.5rem;">
+    <div class="card">
+      <h3>HR INTERVIEW</h3>
+      <p>Behavioral questions, leadership stories, and role-fit preparation.</p>
+      <a href="{{ url_for('configure', type='hr') }}" class="btn btn-primary">Start HR Interview</a>
+    </div>
+    <div class="card">
+      <h3>TECHNICAL INTERVIEW</h3>
+      <p>Python, SQL, data structures, and backend problem solving.</p>
+      <a href="{{ url_for('configure', type='technical') }}" class="btn btn-primary">Start Technical Interview</a>
+    </div>
+    <div class="card">
+      <h3>CUSTOM INTERVIEW</h3>
+      <p>Tailored questions for your exact target job role and difficulty.</p>
+      <a href="{{ url_for('configure', type='custom') }}" class="btn btn-primary">Configure Custom</a>
+    </div>
+  </div>
+
+  <div class="grid-4" style="margin-top: 2rem;">
+    <div class="card"><span class="muted">Interviews Completed</span><strong>{{ summary.interviews_completed }}</strong></div>
+    <div class="card"><span class="muted">Average Score</span><strong>{{ summary.average_score }}%</strong></div>
+    <div class="card"><span class="muted">Best Performance</span><strong>{{ summary.best_performance }}%</strong></div>
+    <div class="card"><span class="muted">Total Practice Time</span><strong>{{ (summary.total_practice_seconds // 60) }}m</strong></div>
+  </div>
+
+  <div class="card" style="margin-top: 2rem;">
+    <h3>Recent Interview History</h3>
+    {% if summary.recent_history %}
+      <table class="table">
+        <thead>
+          <tr><th>Role</th><th>Type</th><th>Mode</th><th>Score</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          {% for item in summary.recent_history %}
+            <tr>
+              <td>{{ item.target_role }}</td>
+              <td>{{ item.interview_type|upper }}</td>
+              <td>{{ item.interview_mode|title }}</td>
+              <td>{{ item.total_score }}/{{ item.max_score }} ({{ item.percentage }}%)</td>
+              <td><a href="{{ url_for('result', attempt_id=item.id) }}">View Report</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">No completed interviews yet. Start your first session above.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
